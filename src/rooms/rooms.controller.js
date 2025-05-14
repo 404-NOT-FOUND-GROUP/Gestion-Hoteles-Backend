@@ -147,6 +147,9 @@ export const assignRoomToUser = async (req, res) => {
             });
         }
 
+        room.hotel.reservation += 1;
+        await room.hotel.save();
+
         room.user = uid;
         room.status = "OCCUPIED";
         await room.save();

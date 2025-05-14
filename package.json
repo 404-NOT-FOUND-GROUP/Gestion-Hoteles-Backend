@@ -1,0 +1,39 @@
+{
+  "name": "gestion-hotelera",
+  "version": "1.0.0",
+  "description": "Proyecto de un sistema de Gestion de Hoteles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gestion-de-Hoteles-Arca-de-Noe/Gestion-Hotelera.git"
+  },
+  "author": "El Arca de Noe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gestion-de-Hoteles-Arca-de-Noe/Gestion-Hotelera/issues"
+  },
+  "homepage": "https://github.com/Gestion-de-Hoteles-Arca-de-Noe/Gestion-Hotelera#readme",
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "gestion-hotelera": "file:",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "type": "module"
+}

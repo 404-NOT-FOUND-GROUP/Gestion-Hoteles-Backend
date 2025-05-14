@@ -1,0 +1,644 @@
+{
+	"info": {
+		"_postman_id": "3a0e884a-7cb3-4e77-be99-16912ea9f3b8",
+		"name": "Gestor Hotelera",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41970442"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Register Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diego\",\r\n    \"surname\": \"Luna\",\r\n    \"password\": \"Bry22an5\",\r\n    \"email\": \"dlunaz@gmail.com\",\r\n    \"phone\": \"78965412\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cgomez123@gmail.com\",\r\n    \"password\": \"123Cgomez@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Editar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODA5YWMyZmU2ZDUwNGNkN2EzMzBjOGYiLCJpYXQiOjE3NDU0NjUxNTMsImV4cCI6MTc0NTQ2ODc1M30.aBH83EQ7meSNMNW7xKLlveP9kP-7hBpgDApucBiN-rk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Isaac\",\r\n    \"surname\": \"Aldana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/updateUser/6809ac2fe6d504cd7a330c8f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"user",
+								"updateUser",
+								"6809ac2fe6d504cd7a330c8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Contraseña",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODA5YWMyZmU2ZDUwNGNkN2EzMzBjOGYiLCJpYXQiOjE3NDU0NjUyODYsImV4cCI6MTc0NTQ2ODg4Nn0.olMeDFwAOIZD7u3QqWSCItMb6dcURvc4phnqSk4FPUo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"Bry22an5\",\r\n    \"newPassword\": \"Os22car5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/updatePassword/6809ac2fe6d504cd7a330c8f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"user",
+								"updatePassword",
+								"6809ac2fe6d504cd7a330c8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODA5YjA5Nzg5NjE0OTA1ZjY2MGY3ZWEiLCJpYXQiOjE3NDU0NjU2MzYsImV4cCI6MTc0NTQ2OTIzNn0.ITUWGl2Ee1JuMWKPTIYSbXsdelNS52NB_SDYL01Uork",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/deleteUser/6809b09789614905f660f7ea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"user",
+								"deleteUser",
+								"6809b09789614905f660f7ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODA5NGIyMzg0NTg3NTE1NjNkODhiMTciLCJpYXQiOjE3NDU5NjY2MjksImV4cCI6MTc0NTk3MDIyOX0.fIKhJxp-FYnl2cWmUOTSiU9PmDYjPmgj5gZ2AHTJPvI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODA5NGIyMzg0NTg3NTE1NjNkODhiMTciLCJpYXQiOjE3NDU5NjY2MjksImV4cCI6MTc0NTk3MDIyOX0.fIKhJxp-FYnl2cWmUOTSiU9PmDYjPmgj5gZ2AHTJPvI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/buscarUser/68094d517507eeafc9a8b1af",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"user",
+								"buscarUser",
+								"68094d517507eeafc9a8b1af"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODA5NGIyMzg0NTg3NTE1NjNkODhiMTciLCJpYXQiOjE3NDU5NjY0OTQsImV4cCI6MTc0NTk3MDA5NH0.DKvEH-ficp27GqGB2IjVWJZQYsbm3F8hzhe3KQZACPw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/getUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"user",
+								"getUsers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "Crear Hotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/createHotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"hotel",
+								"createHotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Hoteles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/getHotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"hotel",
+								"getHotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Hotel Por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/getHotelById/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"hotel",
+								"getHotelById",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Hotel",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/updateHotel/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"hotel",
+								"updateHotel",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Hotel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/deleteHotel/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"hotel",
+								"deleteHotel",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "Crear room",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzEwNzQsImV4cCI6MTc0NjEzNDY3NH0.F43cmeXA6xiJFCxKywz0GSU77SB-iNvaJigOQWa5lZ8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": 201,\r\n    \"type\": \"PRESIDENTIAL\",\r\n    \"hotel\": \"6813d8dfd0b1aadf53856eef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/addRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"rooms",
+								"addRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzEwNzQsImV4cCI6MTc0NjEzNDY3NH0.F43cmeXA6xiJFCxKywz0GSU77SB-iNvaJigOQWa5lZ8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": 303,\r\n    \"type\": \"PRESIDENTIAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/6813d9e0fc37b846ec236b9d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"rooms",
+								"6813d9e0fc37b846ec236b9d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Rooms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzQ1ODAsImV4cCI6MTc0NjEzODE4MH0.2DOBnlT5rcpfPLXqZIJwUTR4yWbAwvJhOAs_PyPFOMI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"rooms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desocupar room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzQ1ODAsImV4cCI6MTc0NjEzODE4MH0.2DOBnlT5rcpfPLXqZIJwUTR4yWbAwvJhOAs_PyPFOMI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/free/6813d9e0fc37b846ec236b9d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"rooms",
+								"free",
+								"6813d9e0fc37b846ec236b9d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzQ1ODAsImV4cCI6MTc0NjEzODE4MH0.2DOBnlT5rcpfPLXqZIJwUTR4yWbAwvJhOAs_PyPFOMI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotel\": \"6813d8dfd0b1aadf53856eef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/assign/6813d9e0fc37b846ec236b9d/6813e5c44f752f7e4246af93",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"rooms",
+								"assign",
+								"6813d9e0fc37b846ec236b9d",
+								"6813e5c44f752f7e4246af93"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar room por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzEwNzQsImV4cCI6MTc0NjEzNDY3NH0.F43cmeXA6xiJFCxKywz0GSU77SB-iNvaJigOQWa5lZ8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/6813d9e0fc37b846ec236b9d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"rooms",
+								"6813d9e0fc37b846ec236b9d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -124,3 +124,20 @@ export const deleteHotel = async (req, res) => {
         });
     }
 };
+
+export const getReservations = async (req, res) => {
+    try {
+        const hotels = await Hotel.find().sort({ reservation: -1 });
+        res.status(200).json({
+            success: true,
+            msg: "Listado de hotel con más reservaciones:",
+            hotels
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error recibiendo hoteles",
+            error: error.message
+        });
+    }
+};

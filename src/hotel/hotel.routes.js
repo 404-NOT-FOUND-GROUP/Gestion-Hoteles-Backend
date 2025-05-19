@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createHotel, getHotels, getHotelById, updateHotel, deleteHotel} from "./hotel.controller.js";
+import { createHotel, getHotels, getHotelById, updateHotel, deleteHotel, getReservations} from "./hotel.controller.js";
 import { createHotelValidator, getHotelsValidator, getHotelByIdValidator, updateHotelValidator, deleteHotelValidator } from "../middlewares/hotel-validators.js";
 import { uploadProfilePicture } from "../../configs/multer.js";
 
@@ -14,5 +14,7 @@ router.get("/getHotelById/:hid", getHotelByIdValidator, getHotelById);
 router.put("/updateHotel/:hid", updateHotelValidator, updateHotel);
 
 router.delete("/deleteHotel/:hid", deleteHotelValidator, deleteHotel);
+
+router.get("/getReservations", getReservations);
 
 export default router

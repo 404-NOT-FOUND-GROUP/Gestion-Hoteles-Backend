@@ -75,6 +75,11 @@ export const updateHotel = async (req, res) => {
         const { hid } = req.params;
         const data = req.body;
 
+        if (req.file) {
+            const imageUrl = `/uploads/${req.file.filename}`;
+            data.image = imageUrl;
+        }
+
         const updatedHotel = await Hotel.findByIdAndUpdate(hid, data, { new: true });
 
         if (!updatedHotel) {

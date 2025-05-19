@@ -4,8 +4,9 @@ import User from "../user/user.model.js";
 export const createRoom = async (req, res) => {
     try {
         const { number, type, hotel } = req.body; 
+        let image = req.file ? req.file.filename : null;
 
-        const room = new Room({ number, type, hotel });
+        const room = new Room({ number, type, hotel, image });
         await room.save();
 
         const populatedRoom = await Room.findById(room._id).populate('hotel', 'name address'); // "hotel" en minúscula
@@ -84,6 +85,11 @@ export const updateRoom = async (req, res) => {
             });
         }
 
+        if (req.file) {
+            const imageUrl = `/uploads/${req.file.filename}`;
+            data.image = imageUrl;
+        }
+
         const updatedRoom = await Room.findByIdAndUpdate(rid, data, { new: true });
 
         res.status(200).json({
@@ -99,6 +105,7 @@ export const updateRoom = async (req, res) => {
         });
     }
 };
+
 export const deleteRoom = async (req, res) => {
     try {
         const { rid } = req.params;

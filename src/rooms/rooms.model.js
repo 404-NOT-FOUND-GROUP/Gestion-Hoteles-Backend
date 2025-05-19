@@ -21,6 +21,10 @@ const roomSchema = Schema({
         required: false,
         default: null
     },
+    image: {
+        type: String,
+        required: false
+    },
     status: {
         type: String,
         enum: ["OCCUPIED", "AVAILABLE"],

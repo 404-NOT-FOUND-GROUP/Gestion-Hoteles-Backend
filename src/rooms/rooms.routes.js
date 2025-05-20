@@ -9,23 +9,30 @@ import {
     freeRoom
 } from "./rooms.controller.js";
 
-import { validateJWT } from "../middlewares/validate-jwt.js";
+import { createRoomValidator, 
+        getRoomsValidator, 
+        findyByRoomValidator, 
+        updateRoomValidator, 
+        deleteRoomValidator, 
+        assingValidator,
+        freeValidator } from "../middlewares/validate-room.js";
+
 import { validateHotel } from "../middlewares/validate-hotel.js";
 
 const router = Router();
 
-router.post("/addRoom", validateJWT, validateHotel, createRoom);
+router.post("/addRoom", validateHotel, createRoomValidator, createRoom);
 
-router.get("/", validateJWT, getRooms);
+router.get("/listRooms", getRoomsValidator, getRooms);
 
-router.get("/:rid", validateJWT, getRoomById);
+router.get("/findByRoom/:rid", findyByRoomValidator, getRoomById);
 
-router.put("/:rid", validateJWT, updateRoom);
+router.put("/updateRoom/:rid", updateRoomValidator, updateRoom);
 
-router.delete("/:rid", validateJWT, deleteRoom);
+router.delete("/deleteRoom/:rid", deleteRoomValidator, deleteRoom);
 
-router.put("/assign/:rid/:uid", validateJWT, validateHotel, assignRoomToUser);
+router.put("/assign/:rid/:uid", validateHotel, assingValidator, assignRoomToUser);
 
-router.put("/free/:rid", validateJWT, freeRoom);
+router.put("/free/:rid", freeValidator, freeRoom);
 
 export default router;

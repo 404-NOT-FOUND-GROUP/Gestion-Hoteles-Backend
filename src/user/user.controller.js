@@ -18,7 +18,7 @@ export const getUsers = async (req, res) => {
     } catch (err) {
         return res.status(500).json({
             success: false,
-            message: "Error al obtener los usuarios",
+            message: "Error obtaining users",
             error: err.message
         });
     }
@@ -26,20 +26,20 @@ export const getUsers = async (req, res) => {
 
 export const updateUser = async(req, res) =>{
     try{
-        const {id} = req.params;
+        const {uid} = req.params;
         const data = req.body;
 
-        const user = await User.findByIdAndUpdate(id, data, {new: true});
+        const user = await User.findByIdAndUpdate(uid, data, {new: true});
 
         res.status(200).json({
             success: true,
-            msg: "El usuario se actualizo correctamente",
+            msg: "The user has been updated successfully.",
             user
         })
     }catch(err){
         res.status(500).json({
             success: false,
-            msg: "Error al actualizar el usuario",
+            msg: "Error updating the user",
             error: err.message
         });
     }
@@ -53,13 +53,13 @@ export const deleteUser = async(req, res) =>{
 
         return res.status(200).json({
             success: true,
-            message: "Se elimino el usuario",
+            message: "The user was removed",
             user
         })
     }catch(err){
         return res.status(500).json({
             success: false,
-            message: "Error al eliminar el usuario",
+            message: "Error deleting the user",
             error: err.message
         })
     }
@@ -75,7 +75,7 @@ export const updatePassword = async (req, res) => {
         if (!oldPassword || !newPassword) {
             return res.status(400).json({
                 success: false,
-                message: "Se requiere la contraseña actual y la nueva contraseña."
+                message: "The current password and the new password are required"
             });
         }
  
@@ -84,7 +84,7 @@ export const updatePassword = async (req, res) => {
         if (!matchOldPassword) {
             return res.status(400).json({
                 success: false,
-                message: "La contraseña actual no es correcta."
+                message: "The current password is not correct"
             });
         }
  
@@ -93,7 +93,7 @@ export const updatePassword = async (req, res) => {
         if (matchOldAndNewPassword) {
             return res.status(400).json({
                 success: false,
-                message: "La nueva contraseña no puede ser igual a la anterior"
+                message: "The new password cannot be the same as the previous one"
             });
         }
  
@@ -103,27 +103,27 @@ export const updatePassword = async (req, res) => {
  
         return res.status(200).json({
             success: true,
-            message: "Contraseña actualizada",
+            message: "Updated password",
         });
  
     } catch (err) {
         return res.status(500).json({
             success: false,
-            message: "Error al actualizar contraseña",
+            message: "Error updating password",
             error: err.message
         });
     }
 };
 
-export const buscarUsuario = async(req, res) =>{
+export const findByUser = async(req, res) =>{
     try{
-        const {id} = req.params;
-        const user = await User.findById(id)
+        const {uid} = req.params;
+        const user = await User.findById(uid)
 
         if(!user){
             return res.status(404).jsons({
                 success: false,
-                message: "Este usuario no existe"
+                message: "This user does not exist"
             })
         }
 
@@ -134,7 +134,7 @@ export const buscarUsuario = async(req, res) =>{
     }catch(err){
         return res.status(500).json({
             success: false,
-            message: "Error al buscar el usuario",
+            message: "Error while searching for the user",
             error: err.message
         })
     }

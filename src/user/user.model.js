@@ -1,3 +1,4 @@
+import e from "express"
 import { Schema, model } from "mongoose"
 
 const userSchema = Schema({
@@ -27,7 +28,7 @@ const userSchema = Schema({
         maxLength: 8
     },
     role: {
-        type: String,
+        enum: ["USER_ROLE", "ADMIN_ROLE"], 
         required: true,
         default: "USER_ROLE"
     },

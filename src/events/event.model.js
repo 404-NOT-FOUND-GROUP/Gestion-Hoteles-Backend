@@ -1,4 +1,15 @@
 import { Schema, model } from "mongoose";
+import { setEventServicesPrice } from "../middlewares/events-middleware.js";
+
+const SERVICES = [
+    "Servicio de Meseros",
+    "Servicio de Bartender",
+    "Servicio de Bouffett",
+    "Servicio de Reuniones",
+    "Servicio de Fiesta",
+    "Servicio de Decoracion",
+    "Servicio de Staff"
+]
 
 const eventSchema = Schema({
     name:{
@@ -22,7 +33,13 @@ const eventSchema = Schema({
     },
     resources:{
         type: [String],
+        enum: SERVICES,
         default:[]
+    },
+        resourcesPrice: {
+        type: Number,
+        required: false,
+        default: 0
     },
     status: {
         type: String,
@@ -34,4 +51,5 @@ const eventSchema = Schema({
     timestamps: true
 });
 
+setEventServicesPrice(eventSchema);
 export default model("Event", eventSchema)

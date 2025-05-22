@@ -1,7 +1,7 @@
 import multer from "multer";
 import { dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
-import fs from "fs"; // Necesitamos fs para verificar la existencia de la carpeta y crearla
+import fs from "fs";
 
 const CURRENT_DIR = dirname(fileURLToPath(import.meta.url));
 const MIMETYPES = ["image/png", "image/jpg", "image/jpeg"];
@@ -13,13 +13,12 @@ const createMulterConfig = (destinationFolder) => {
             destination: (req, file, cb) => {
                 const fullPath = join(CURRENT_DIR, destinationFolder);
 
-                // Verificar si la carpeta de destino existe, si no, crearla
                 if (!fs.existsSync(fullPath)) {
-                    fs.mkdirSync(fullPath, { recursive: true }); // Crea la carpeta si no existe
+                    fs.mkdirSync(fullPath, { recursive: true });
                 }
 
-                req.filePath = fullPath; // Opcional: Puedes almacenar la ruta en req para usarla después
-                cb(null, fullPath); // Pasamos la carpeta de destino al middleware de Multer
+                req.filePath = fullPath; 
+                cb(null, fullPath); 
             },
             filename: (req, file, cb) => {
                 const fileExtension = extname(file.originalname);

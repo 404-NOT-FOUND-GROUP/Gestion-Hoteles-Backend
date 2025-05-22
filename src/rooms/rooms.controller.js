@@ -133,52 +133,6 @@ export const deleteRoom = async (req, res) => {
     }
 };
 
-export const assignRoomToUser = async (req, res) => {
-    try {
-        const { rid, uid } = req.params;
-
-        const user = await User.findById(uid);
-        if (!user) {
-            return res.status(404).json({ success: false, msg: "User not found" });
-        }
-
-        const room = await Room.findById(rid).populate('hotel', 'name address');
-        if (!room) {
-            return res.status(404).json({ success: false, msg: "Room not found" });
-        }
-
-        if (room.status === "OCCUPIED") {
-            return res.status(400).json({
-                success: false,
-                msg: "Room is already assigned to another user"
-            });
-        }
-
-        room.hotel.reservation += 1;
-        await room.hotel.save();
-
-        room.user = uid;
-        room.status = "OCCUPIED";
-        await room.save();
-
-        const populatedRoom = await Room.findById(room._id)
-            .populate('hotel', 'name address')
-            .populate('user', 'name username phone');
-
-        res.status(200).json({
-            success: true,
-            msg: "Room assigned to user",
-            room: populatedRoom
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            msg: "Error assigning room",
-            error: error.message
-        });
-    }
-};
-
 export const freeRoom = async (req, res) => {
     try {
         const { rid } = req.params;

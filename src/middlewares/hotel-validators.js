@@ -3,6 +3,7 @@ import { hotelExists } from "../helpers/db-validator.js";
 import { validarCampos } from "./validate-fileds.js";
 import { handleErrors } from "./handle-errors.js";
 import { validateJWT } from "./validate-jwt.js";
+import { hasRoles } from "./validate-roles.js";
 
 export const createHotelValidator = [
     validateJWT,

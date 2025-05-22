@@ -16,12 +16,6 @@ const roomSchema = Schema({
         enum: ["STANDARD", "SUITE", "DELUXE", "PRESIDENTIAL"],
         required: [true, "Tipo de habitacion necesaria"]
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: false,
-        default: null
-    },
     image: {
         type: String,
         required: false

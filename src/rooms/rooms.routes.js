@@ -5,7 +5,6 @@ import {
     getRoomById,
     updateRoom,
     deleteRoom,
-    assignRoomToUser,
     freeRoom
 } from "./rooms.controller.js";
 
@@ -14,7 +13,6 @@ import { createRoomValidator,
         findyByRoomValidator, 
         updateRoomValidator, 
         deleteRoomValidator, 
-        assingValidator,
         freeValidator } from "../middlewares/validate-room.js";
 
 import { validateHotel } from "../middlewares/validate-hotel.js";
@@ -30,8 +28,6 @@ router.get("/findByRoom/:rid", findyByRoomValidator, getRoomById);
 router.put("/updateRoom/:rid", updateRoomValidator, updateRoom);
 
 router.delete("/deleteRoom/:rid", deleteRoomValidator, deleteRoom);
-
-router.put("/assign/:rid/:uid", validateHotel, assingValidator, assignRoomToUser);
 
 router.put("/free/:rid", freeValidator, freeRoom);
 

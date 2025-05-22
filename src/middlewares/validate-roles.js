@@ -10,7 +10,7 @@ export const hasRoles = (...role) => {
         if (!role.includes(req.usuario.role)) {
             return res.status(401).json({
                 success: false,
-                message: "Role no autorizado, El recusrso requiere uno de los siguientes roles: ${role}" 
+                message: `Role no autorizado, El recusrso requiere uno de los siguientes roles: ${role}` 
             })            
         }
         next()

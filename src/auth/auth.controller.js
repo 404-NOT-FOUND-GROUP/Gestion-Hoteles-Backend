@@ -32,16 +32,16 @@ export const login = async (req, res) => {
 
         if (!user) {
             return res.status(400).json({
-                message: "Crendenciales inválidas",
-                error: "No existe el usuario o correo ingresado"
+                message: "Invalid credentials",
+                error: "The user or email entered does not exist"
             });
         }
 
         const validPassword = await verify(user.password, password);
         if (!validPassword) {
             return res.status(400).json({
-                message: "Crendenciales inválidas",
-                error: "Contraseña incorrecta"
+                message: "Invalid credentials",
+                error: "Incorrect password"
             });
         }
 
@@ -66,25 +66,25 @@ const AddUserAdmin = async () => {
         const adminExists = await User.findOne({ role: "ADMIN_ROLE" });
 
         if (adminExists) {
-            console.log("El usuario de administrador ya existe, no se puede crear otro");
+            console.log("The administrator user already exists, another cannot be created");
             return;
         }
 
-        const hashedPassword = await hash("123Cgomez@");
+        const hashedPassword = await hash("admin123@");
 
         const userAdmin = new User({
-            name: "Cristian",
-            surname: "Gomez",
-            email: "cgomez123@gmail.com",
+            name: "Super",
+            surname: "Admin",
+            email: "supadmin@gmail.com",
             password: hashedPassword,
             phone: 12345678,
             role: "ADMIN_ROLE"
         });
 
         await userAdmin.save();
-        console.log("Administrador creado exitosamente");
+        console.log("Administrator created successfully");
     } catch (error) {
-        console.error("Error al verificar o crear el Administrador:", error.message);
+        console.error("Error verifying or creating the Administrator:", error.message);
     }
 };
 

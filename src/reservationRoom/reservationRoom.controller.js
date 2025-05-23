@@ -1,5 +1,6 @@
 import ReservationRoom from './reservationRoom.model.js';
 import Room from '../rooms/rooms.model.js';
+import PDFDocument from 'pdfkit';
 
 export const createReservation = async (req, res) => {
     try {
@@ -93,12 +94,16 @@ export const findReservationById = async (req, res) => {
         const { _id } = req.params;
         const reservation = await ReservationRoom.findById(_id)
             .populate('room', 'number type')
-            .populate('user', 'name surname email phone');
+            .populate({
+                path: 'room',
+                populate: { path: 'hotel', select: 'name' }
+            })
+            .populate('user', 'name surname email phone ');
 
-        if (!reservation) {
+        if (!reservation || reservation.status === false) {
             return res.status(404).json({
                 success: false,
-                msg: "Reservation not found"
+                msg: "Reservation not found or has been cancelled"
             });
         }
 
@@ -110,6 +115,109 @@ export const findReservationById = async (req, res) => {
         res.status(500).json({
             success: false,
             msg: "Error retrieving reservation",
+            error: error.message
+        });
+    }
+}
+
+export const generatePDFById = async (req, res) => {
+    try {
+        const { _id } = req.params;
+        const reservation = await ReservationRoom.findById(_id)
+            .populate({
+                path: 'room',
+                populate: { path: 'hotel', select: 'name' }
+            })
+            .populate('user', 'name surname email phone');
+
+        if (!reservation || reservation.status === false) {
+            return res.status(404).json({
+                success: false,
+                msg: "Reservation not found or has been cancelled"
+            });
+        }
+
+        const doc = new PDFDocument();
+        let filename = `Factura_${reservation._id}.pdf`;
+        filename = encodeURIComponent(filename);
+
+        res.setHeader('Content-Disposition', 'attachment; filename="' + filename + '"');
+        res.setHeader('Content-Type', 'application/pdf');
+
+        // Manejar errores del stream
+        doc.on('error', (err) => {
+            if (!res.headersSent) {
+                res.status(500).json({
+                    success: false,
+                    msg: "Error generating PDF",
+                    error: err.message
+                });
+            }
+        });
+
+        doc.pipe(res);
+
+        doc.fontSize(20).text('Factura de Reservación:', { align: 'center' });
+        doc.moveDown();
+
+        doc.fontSize(16).text(`Reservación ID: ${reservation._id}`);
+        doc.moveDown();
+        doc.text(`Fecha de creación: ${reservation.createdAt.toLocaleString()}`);
+        doc.moveDown();
+        doc.text(`Hotel: ${reservation.room.hotel.name}`);
+        doc.moveDown();
+        doc.moveDown();
+        doc.text(`User: ${reservation.user.name} ${reservation.user.surname}`, { align: 'left'});
+        doc.text(`Email: ${reservation.user.email}`, { align: 'left'});
+        doc.text(`Phone: ${reservation.user.phone}`, { align: 'left'});
+        doc.moveDown();
+        doc.text(`Room Number: ${reservation.room.number}`);
+        doc.text(`Room Type: ${reservation.room.type}`);
+        doc.moveDown();
+        doc.moveDown();
+        doc.text(`Total Price: Q${reservation.room.price}`, { align: 'center'});
+        doc.moveDown();
+        doc.text(`Gracias por reservar con el hotel: ${reservation.room.hotel.name}`, { align: 'center' });
+        doc.text(`Esperamos que disfrute de su estancia!`, { align: 'center' });
+        doc.text(`Regrese Pronto!`, { align: 'center' });
+
+        doc.end();
+    } catch (error) {
+        if (!res.headersSent) {
+            res.status(500).json({
+                success: false,
+                msg: "Error retrieving reservation",
+                error: error.message
+            });
+        }
+    }
+}
+
+export const cancelReservation = async (req, res) => { 
+    try {
+        const { _id } = req.params;
+        const reservation = await ReservationRoom.findById(_id).populate('room');
+
+        if (!reservation) {
+            return res.status(404).json({
+                success: false,
+                msg: "Reservation not found"
+            });
+        }
+
+        reservation.status = "false";
+        reservation.room.status = "AVAILABLE";
+        await reservation.room.save();
+        await reservation.save();
+
+        res.status(200).json({
+            success: true,
+            msg: "Reservation cancelled successfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error cancelling reservation",
             error: error.message
         });
     }

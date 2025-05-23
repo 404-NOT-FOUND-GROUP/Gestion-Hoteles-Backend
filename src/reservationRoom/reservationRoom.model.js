@@ -17,6 +17,10 @@ const reservationRoomSchema = Schema({
         type: Date,
         required: [true, "La fecha de salida es requerida"]
     },
+    status: {
+        type: Boolean,
+        default: true
+    }
 }, {
     versionKey: false,
     timestamps: true

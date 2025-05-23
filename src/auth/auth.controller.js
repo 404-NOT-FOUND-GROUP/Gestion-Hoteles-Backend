@@ -88,4 +88,70 @@ const AddUserAdmin = async () => {
     }
 };
 
+export const findByEmail = async (req, res) => {
+    const { user } = req.body;
+
+    if (!user) {
+        return res.status(400).json({
+            message: "Debes proporcionar el campo user con el email",
+        });
+    }
+
+    try {
+        const foundUser = await User.findOne({ email: user });
+
+        if (!foundUser) {
+            return res.status(404).json({
+                message: "User not found",
+                error: "The email entered does not exist"
+            });
+        }
+
+        return res.status(200).json({
+            message: "User found",
+            userDetails: {
+                id: foundUser._id,
+                name: foundUser.name,
+                email: foundUser.email,
+                username: foundUser.username
+            }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            message: "Error finding the user",
+            error: err.message
+        });
+    }
+}
+
+export const updatePasswordById = async (req, res) => {
+    const { uid } = req.params;
+    const { password } = req.body;
+
+    try {
+        const user = await User.findById(uid);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found",
+                error: "The user does not exist"
+            });
+        }
+
+        const hashedPassword = await hash(password);
+        user.password = hashedPassword;
+
+        await user.save();
+
+        return res.status(200).json({
+            message: "Password updated successfully"
+        });
+    } catch (err) {
+        return res.status(500).json({
+            message: "Error updating the password",
+            error: err.message
+        });
+    }
+}
+
 export default AddUserAdmin;

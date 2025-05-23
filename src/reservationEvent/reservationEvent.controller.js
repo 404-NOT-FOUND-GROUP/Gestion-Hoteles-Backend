@@ -1,10 +1,10 @@
-import ReservationRoom from './reservationRoom.model.js';
-import Room from '../rooms/rooms.model.js';
+import ReservationEvent from './reservationEvent.model.js';
+import Event from '../events/event.model.js';
 import PDFDocument from 'pdfkit';
 
-export const createReservation = async (req, res) => {
+export const createReservationEvent = async (req, res) => {
     try {
-        const { rid } = req.params;
+        const { eid } = req.params;
         const { checkInDate, checkOutDate } = req.body;
         const user = req.usuario;
 
@@ -37,32 +37,21 @@ export const createReservation = async (req, res) => {
             });
         }
 
-        const room = await Room.findById(rid).populate('hotel', 'name');
-        if (!room) {
-            return res.status(404).json({ success: false, msg: "Room not found" });
+        const event = await Event.findById(eid).populate('hotel', 'name');
+        if (!event) {
+            return res.status(404).json({ success: false, msg: "Event not found" });
         }
 
-        if (room.status === "OCCUPIED") {
-            return res.status(400).json({
-                success: false,
-                msg: "Room is already occupied"
-            });
-        }
-
-        const reservation = await ReservationRoom.create({
-            room: room._id,
+        const reservation = await ReservationEvent.create({
+            event: event._id,
             user: user._id,
             checkInDate,
             checkOutDate
         });
 
-        room.status = "OCCUPIED";
-        room.user = user._id;
-        await room.save();
-
         res.status(201).json({
             success: true,
-            msg: "Reservation created successfully",
+            msg: "Event reservation created successfully",
             reservation: {
                 _id: reservation._id,
                 user: {
@@ -71,10 +60,13 @@ export const createReservation = async (req, res) => {
                     email: user.email,
                     phone: user.phone
                 },
-                room: {
-                    number: room.number,
-                    hotel: room.hotel.name,
-                    type: room.type
+                event: {
+                    name: event.name,
+                    hotel: event.hotel.name,
+                    type: event.type,
+                    date: event.date,
+                    resources: event.resources,
+                    resourcesPrice: event.resourcesPrice
                 },
                 checkInDate: reservation.checkInDate,
                 checkOutDate: reservation.checkOutDate
@@ -83,22 +75,22 @@ export const createReservation = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error creating reservation",
+            msg: "Error creating event reservation",
             error: error.message
         });
     }
 };
 
-export const findReservationById = async (req, res) => {
+// Buscar reservación por ID
+export const findReservationEventById = async (req, res) => {
     try {
         const { _id } = req.params;
-        const reservation = await ReservationRoom.findById(_id)
-            .populate('room', 'number type')
+        const reservation = await ReservationEvent.findById(_id)
             .populate({
-                path: 'room',
+                path: 'event',
                 populate: { path: 'hotel', select: 'name' }
             })
-            .populate('user', 'name surname email phone ');
+            .populate('user', 'name surname email phone');
 
         if (!reservation || reservation.status === false) {
             return res.status(404).json({
@@ -109,23 +101,38 @@ export const findReservationById = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            reservation
+            reservation: {
+                _id: reservation._id,
+                user: reservation.user,
+                event: {
+                    name: reservation.event.name,
+                    hotel: reservation.event.hotel.name,
+                    type: reservation.event.type,
+                    date: reservation.event.date,
+                    resources: reservation.event.resources,
+                    resourcesPrice: reservation.event.resourcesPrice
+                },
+                checkInDate: reservation.checkInDate,
+                checkOutDate: reservation.checkOutDate,
+                createdAt: reservation.createdAt
+            }
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error retrieving reservation",
+            msg: "Error retrieving event reservation",
             error: error.message
         });
     }
-}
+};
 
-export const generatePDFById = async (req, res) => {
+// Generar PDF de reservación
+export const generatePDFEventById = async (req, res) => {
     try {
         const { _id } = req.params;
-        const reservation = await ReservationRoom.findById(_id)
+        const reservation = await ReservationEvent.findById(_id)
             .populate({
-                path: 'room',
+                path: 'event',
                 populate: { path: 'hotel', select: 'name' }
             })
             .populate('user', 'name surname email phone');
@@ -138,13 +145,12 @@ export const generatePDFById = async (req, res) => {
         }
 
         const doc = new PDFDocument();
-        let filename = `Factura_${reservation._id}.pdf`;
+        let filename = `Factura_Evento_${reservation._id}.pdf`;
         filename = encodeURIComponent(filename);
 
         res.setHeader('Content-Disposition', 'attachment; filename="' + filename + '"');
         res.setHeader('Content-Type', 'application/pdf');
 
-        // Manejar errores del stream
         doc.on('error', (err) => {
             if (!res.headersSent) {
                 res.status(500).json({
@@ -157,46 +163,46 @@ export const generatePDFById = async (req, res) => {
 
         doc.pipe(res);
 
-        doc.fontSize(20).text('Factura de Reservación de Habitación:', { align: 'center' });
+        doc.fontSize(20).text('Factura de Reservación de Evento:', { align: 'center' });
         doc.moveDown();
 
         doc.fontSize(16).text(`Reservación ID: ${reservation._id}`);
         doc.moveDown();
         doc.text(`Fecha de creación: ${reservation.createdAt.toLocaleString()}`);
         doc.moveDown();
-        doc.text(`Hotel: ${reservation.room.hotel.name}`);
+        doc.text(`Evento: ${reservation.event.name}`);
+        doc.text(`Hotel: ${reservation.event.hotel.name}`);
+        doc.text(`Tipo: ${reservation.event.type}`);
+        doc.moveDown();
+        doc.text(`Fecha del evento: ${reservation.event.date.toLocaleString()}`);
+        doc.text(`Servicios: ${reservation.event.resources.join(', ')}`);
+        doc.moveDown();
+        doc.text(`Usuario: ${reservation.user.name} ${reservation.user.surname}`);
+        doc.text(`Email: ${reservation.user.email}`);
+        doc.text(`Teléfono: ${reservation.user.phone}`);
         doc.moveDown();
         doc.moveDown();
-        doc.text(`User: ${reservation.user.name} ${reservation.user.surname}`, { align: 'left'});
-        doc.text(`Email: ${reservation.user.email}`, { align: 'left'});
-        doc.text(`Phone: ${reservation.user.phone}`, { align: 'left'});
+        doc.text(`Precio total: Q${reservation.event.resourcesPrice}`, { align: 'center' });
         doc.moveDown();
-        doc.text(`Room Number: ${reservation.room.number}`);
-        doc.text(`Room Type: ${reservation.room.type}`);
-        doc.moveDown();
-        doc.moveDown();
-        doc.text(`Total Price: Q${reservation.room.price}`, { align: 'center'});
-        doc.moveDown();
-        doc.text(`Gracias por reservar con el hotel: ${reservation.room.hotel.name}`, { align: 'center' });
-        doc.text(`Esperamos que disfrute de su estancia!`, { align: 'center' });
-        doc.text(`Regrese Pronto!`, { align: 'center' });
+        doc.text('¡Gracias por reservar su evento!', { align: 'center' });
+        doc.text('Esperamos que disfrute su experiencia con nosotros.', { align: 'center' });
 
         doc.end();
     } catch (error) {
         if (!res.headersSent) {
             res.status(500).json({
                 success: false,
-                msg: "Error retrieving reservation",
+                msg: "Error generating event reservation PDF",
                 error: error.message
             });
         }
     }
-}
+};
 
-export const cancelReservation = async (req, res) => { 
+export const cancelReservationEvent = async (req, res) => {
     try {
         const { _id } = req.params;
-        const reservation = await ReservationRoom.findById(_id).populate('room');
+        const reservation = await ReservationEvent.findById(_id);
 
         if (!reservation) {
             return res.status(404).json({
@@ -205,20 +211,18 @@ export const cancelReservation = async (req, res) => {
             });
         }
 
-        reservation.status = "false";
-        reservation.room.status = "AVAILABLE";
-        await reservation.room.save();
+        reservation.status = false;
         await reservation.save();
 
         res.status(200).json({
             success: true,
-            msg: "Reservation cancelled successfully"
+            msg: "Event reservation cancelled successfully"
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error cancelling reservation",
+            msg: "Error cancelling event reservation",
             error: error.message
         });
     }
-}
+};

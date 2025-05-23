@@ -11,6 +11,7 @@ import hotelRoutes from "../src/hotel/hotel.routes.js"
 import roomsRoutes from "../src/rooms/rooms.routes.js"
 import eventRoutes from "../src/events/event.routes.js"
 import reservationRoomRoutes from "../src/reservationRoom/reservationRoom.routes.js"
+import reservationEventRoutes from "../src/reservationEvent/reservationEvent.routes.js"
 
 import { dbConnection } from "./mongo.js"
 
@@ -44,6 +45,7 @@ const routes = (app) =>{
     app.use("/GestionHoteles/v1/rooms", roomsRoutes)
     app.use("/GestionHoteles/v1/event", eventRoutes)	
     app.use("/GestionHoteles/v1/reservationRoom", reservationRoomRoutes)
+    app.use("/GestionHoteles/v1/reservationEvent", reservationEventRoutes)
 }
 
 const conectarDB = async () =>{

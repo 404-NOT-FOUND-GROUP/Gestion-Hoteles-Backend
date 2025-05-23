@@ -3,7 +3,7 @@ import { hasRoles } from "./validate-roles.js";
 
 export const createRoomValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
+    hasRoles("ADMIN_ROLE")
 ];
 
 export const getRoomsValidator = [
@@ -16,19 +16,10 @@ export const findyByRoomValidator = [
 
 export const updateRoomValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
+    hasRoles("ADMIN_ROLE")
 ];
 
 export const deleteRoomValidator = [
-    validateJWT,
-    hasRoles("ADMIN_ROLE"),
-];
-
-export const assingValidator = [
-    validateJWT
-]
-
-export const freeValidator = [
     validateJWT,
     hasRoles("ADMIN_ROLE")
 ];

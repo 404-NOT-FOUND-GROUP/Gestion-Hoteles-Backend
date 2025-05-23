@@ -28,8 +28,7 @@ export const createRoom = async (req, res) => {
 export const getRooms = async (req, res) => {
     try {
         const rooms = await Room.find()
-        .populate('hotel', 'name address')
-        .populate('user', 'name surname username');
+        .populate('hotel', 'name address');
         res.status(200).json({
             success: true,
             msg: "Rooms retrieved",
@@ -48,8 +47,7 @@ export const getRoomById = async (req, res) => {
     try {
         const { rid } = req.params;
         const room = await Room.findById(rid)
-        .populate('hotel', 'name address')
-        .populate('user', 'name surname username');
+        .populate('hotel', 'name address');
         if (!room) {
             return res.status(404).json({
                 success: false,
@@ -128,44 +126,6 @@ export const deleteRoom = async (req, res) => {
         res.status(500).json({
             success: false,
             msg: "Error deleting room",
-            error: error.message
-        });
-    }
-};
-
-export const freeRoom = async (req, res) => {
-    try {
-        const { rid } = req.params;
-
-        const room = await Room.findById(rid)
-            .populate('hotel', 'name address')
-            .populate('user', 'name username phone');
-
-        if (!room) {
-            return res.status(404).json({
-                success: false,
-                msg: "Room not found"
-            });
-        }
-
-        const previousUser = room.user;
-
-        room.user = null;
-        room.status = "AVAILABLE";
-        await room.save();
-
-        res.status(200).json({
-            success: true,
-            msg: "Room freed",
-            room: {
-                ...room.toObject(),
-                previousUser
-            }
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            msg: "Error freeing room",
             error: error.message
         });
     }

@@ -4,8 +4,9 @@ import User from "../user/user.model.js";
 export const createRoom = async (req, res) => {
     try {
         const { number, type, hotel } = req.body; 
+        let image = req.file ? req.file.filename : null;
 
-        const room = new Room({ number, type, hotel });
+        const room = new Room({ number, type, hotel, image });
         await room.save();
 
         const populatedRoom = await Room.findById(room._id).populate('hotel', 'name address'); // "hotel" en minúscula
@@ -27,8 +28,7 @@ export const createRoom = async (req, res) => {
 export const getRooms = async (req, res) => {
     try {
         const rooms = await Room.find()
-        .populate('hotel', 'name address')
-        .populate('user', 'name surname username');
+        .populate('hotel', 'name address');
         res.status(200).json({
             success: true,
             msg: "Rooms retrieved",
@@ -47,8 +47,7 @@ export const getRoomById = async (req, res) => {
     try {
         const { rid } = req.params;
         const room = await Room.findById(rid)
-        .populate('hotel', 'name address')
-        .populate('user', 'name surname username');
+        .populate('hotel', 'name address');
         if (!room) {
             return res.status(404).json({
                 success: false,
@@ -84,6 +83,11 @@ export const updateRoom = async (req, res) => {
             });
         }
 
+        if (req.file) {
+            const imageUrl = `/uploads/${req.file.filename}`;
+            data.image = imageUrl;
+        }
+
         const updatedRoom = await Room.findByIdAndUpdate(rid, data, { new: true });
 
         res.status(200).json({
@@ -99,6 +103,7 @@ export const updateRoom = async (req, res) => {
         });
     }
 };
+
 export const deleteRoom = async (req, res) => {
     try {
         const { rid } = req.params;
@@ -121,87 +126,6 @@ export const deleteRoom = async (req, res) => {
         res.status(500).json({
             success: false,
             msg: "Error deleting room",
-            error: error.message
-        });
-    }
-};
-
-export const assignRoomToUser = async (req, res) => {
-    try {
-        const { rid, uid } = req.params;
-
-        const user = await User.findById(uid);
-        if (!user) {
-            return res.status(404).json({ success: false, msg: "User not found" });
-        }
-
-        const room = await Room.findById(rid).populate('hotel', 'name address');
-        if (!room) {
-            return res.status(404).json({ success: false, msg: "Room not found" });
-        }
-
-        if (room.status === "OCCUPIED") {
-            return res.status(400).json({
-                success: false,
-                msg: "Room is already assigned to another user"
-            });
-        }
-
-        room.user = uid;
-        room.status = "OCCUPIED";
-        await room.save();
-
-        const populatedRoom = await Room.findById(room._id)
-            .populate('hotel', 'name address')
-            .populate('user', 'name username phone');
-
-        res.status(200).json({
-            success: true,
-            msg: "Room assigned to user",
-            room: populatedRoom
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            msg: "Error assigning room",
-            error: error.message
-        });
-    }
-};
-
-export const freeRoom = async (req, res) => {
-    try {
-        const { rid } = req.params;
-
-        const room = await Room.findById(rid)
-            .populate('hotel', 'name address')
-            .populate('user', 'name username phone');
-
-        if (!room) {
-            return res.status(404).json({
-                success: false,
-                msg: "Room not found"
-            });
-        }
-
-        const previousUser = room.user;
-
-        room.user = null;
-        room.status = "AVAILABLE";
-        await room.save();
-
-        res.status(200).json({
-            success: true,
-            msg: "Room freed",
-            room: {
-                ...room.toObject(),
-                previousUser
-            }
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            msg: "Error freeing room",
             error: error.message
         });
     }

@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { setRoomPrice } from "../middlewares/rooms-middleware.js";
 
 const roomSchema = Schema({
     number: {
@@ -15,21 +16,25 @@ const roomSchema = Schema({
         enum: ["STANDARD", "SUITE", "DELUXE", "PRESIDENTIAL"],
         required: [true, "Tipo de habitacion necesaria"]
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: false,
-        default: null
+    image: {
+        type: String,
+        required: false
     },
     status: {
         type: String,
         enum: ["OCCUPIED", "AVAILABLE"],
         default: "AVAILABLE"
+    },
+    price:{
+        type: Number,
+        required: false,
     }
 }, {
     versionKey: false,
     timestamps: true
 });
+
+setRoomPrice(roomSchema);
 
 roomSchema.methods.toJSON = function() {
     const { _id, ...room } = this.toObject();

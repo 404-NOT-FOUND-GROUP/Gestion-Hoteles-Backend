@@ -29,6 +29,11 @@ const hotelSchema = Schema({
     image: {
         type: String,
         required: false
+    },
+    // No lo soliciten este atributo en el create Hotel
+    reservation: {
+        type: Number,
+        default: 0
     }
 }, {
     versionKey: false,

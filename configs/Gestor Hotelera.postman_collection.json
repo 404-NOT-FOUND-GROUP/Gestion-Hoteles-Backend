@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "3a0e884a-7cb3-4e77-be99-16912ea9f3b8",
+		"_postman_id": "6a600bf2-6e9f-468a-8d67-a745ca3b95d2",
 		"name": "Gestor Hotelera",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "41970442"
+		"_exporter_id": "37604548"
 	},
 	"item": [
 		{
-			"name": "AUTH",
+			"name": "Auth",
 			"item": [
 				{
 					"name": "Register Usuario",
@@ -43,11 +43,14 @@
 				{
 					"name": "Login Usuario",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"cgomez123@gmail.com\",\r\n    \"password\": \"123Cgomez@\"\r\n}",
+							"raw": "{\r\n    \"email\": \"dlunaz@gmail.com\",\r\n    \"password\": \"Hola-123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -66,6 +69,106 @@
 								"v1",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"supadmin@gmail.com\",\r\n    \"password\": \"admin123@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By  Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"supadmin@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/auth/findByEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"auth",
+								"findByEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Hola-123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/auth/updatePasswordById/:uid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"auth",
+								"updatePasswordById",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -101,7 +204,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/user/updateUser/6809ac2fe6d504cd7a330c8f",
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/updateUser/:idUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -112,7 +215,13 @@
 								"v1",
 								"user",
 								"updateUser",
-								"6809ac2fe6d504cd7a330c8f"
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -143,7 +252,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/user/updatePassword/6809ac2fe6d504cd7a330c8f",
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/updatePassword/:idUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -154,7 +263,13 @@
 								"v1",
 								"user",
 								"updatePassword",
-								"6809ac2fe6d504cd7a330c8f"
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -185,7 +300,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/user/deleteUser/6809b09789614905f660f7ea",
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/deleteUser/:idUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -196,7 +311,13 @@
 								"v1",
 								"user",
 								"deleteUser",
-								"6809b09789614905f660f7ea"
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -230,7 +351,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/user/buscarUser/68094d517507eeafc9a8b1af",
+							"raw": "http://localhost:3000/GestionHoteles/v1/user/buscarUser/:idUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -241,7 +362,13 @@
 								"v1",
 								"user",
 								"buscarUser",
-								"68094d517507eeafc9a8b1af"
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -292,8 +419,27 @@
 				{
 					"name": "Crear Hotel",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzODJhNjNkMzUzYTZmMzE4Y2UiLCJpYXQiOjE3NDc4OTM5ODMsImV4cCI6MTc0Nzg5NzU4M30.sBQ-Ez7edjMvnr2-tG7TWBZXT0Y8hqUvK2_gCI-nYuw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"404\",\r\n    \"address\": \"32-2, avenida 23, Zona 17\",\r\n    \"phone\": \"11112222\",\r\n    \"description\": \"Es el hotel más elegante de la zona\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/createHotel",
 							"protocol": "http",
@@ -335,11 +481,23 @@
 				},
 				{
 					"name": "Obtener Hotel Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/getHotelById/",
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/getHotelById/:idHotel",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -350,7 +508,13 @@
 								"v1",
 								"hotel",
 								"getHotelById",
-								""
+								":idHotel"
+							],
+							"variable": [
+								{
+									"key": "idHotel",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -359,10 +523,29 @@
 				{
 					"name": "Actualizar Hotel",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZTQzNjgyYmZkNmNhMmY1NjJiNGEiLCJpYXQiOjE3NDY0MTE2MTYsImV4cCI6MTc0NjQxNTIxNn0.QHyS6mA2XejzByyCi1YNW-0Oj6EkGDO9skWmcKXqyOQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Hotel Vertical\",\r\n    \"address\": \"34-1, avenida 10, Zona 1\",\r\n    \"phone\": \"11112222\",\r\n    \"description\": \"Es el hotel más elegante de la zona\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/updateHotel/",
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/updateHotel/:idHotel",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -373,7 +556,13 @@
 								"v1",
 								"hotel",
 								"updateHotel",
-								""
+								":idHotel"
+							],
+							"variable": [
+								{
+									"key": "idHotel",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -382,10 +571,29 @@
 				{
 					"name": "Eliminar Hotel",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZTQzNjgyYmZkNmNhMmY1NjJiNGEiLCJpYXQiOjE3NDY0MTE2MTYsImV4cCI6MTc0NjQxNTIxNn0.QHyS6mA2XejzByyCi1YNW-0Oj6EkGDO9skWmcKXqyOQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/deleteHotel/",
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/deleteHotel/:idHotel",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -396,7 +604,50 @@
 								"v1",
 								"hotel",
 								"deleteHotel",
-								""
+								":idHotel"
+							],
+							"variable": [
+								{
+									"key": "idHotel",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reportes de Reservaciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/GestionHoteles/v1/hotel/getReservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"hotel",
+								"getReservations"
 							]
 						}
 					},
@@ -410,6 +661,16 @@
 				{
 					"name": "Crear room",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzODJhNjNkMzUzYTZmMzE4Y2UiLCJpYXQiOjE3NDc4OTM5ODMsImV4cCI6MTc0Nzg5NzU4M30.sBQ-Ez7edjMvnr2-tG7TWBZXT0Y8hqUvK2_gCI-nYuw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -420,7 +681,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"number\": 201,\r\n    \"type\": \"PRESIDENTIAL\",\r\n    \"hotel\": \"6813d8dfd0b1aadf53856eef\"\r\n}",
+							"raw": "{\r\n    \"number\": 201,\r\n    \"type\": \"PRESIDENTIAL\",\r\n    \"hotel\": \"682ebfc4abebb3223af4468c\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -447,6 +708,16 @@
 				{
 					"name": "Editar Room",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5ODU1NDgsImV4cCI6MTc0Nzk4OTE0OH0.j_ae0iiURPXcDwEGkzZtlFDu3V1PC-E6QH--YIqHQkw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -465,7 +736,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/6813d9e0fc37b846ec236b9d",
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/updateRoom/:idRoom",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -475,7 +746,14 @@
 								"GestionHoteles",
 								"v1",
 								"rooms",
-								"6813d9e0fc37b846ec236b9d"
+								"updateRoom",
+								":idRoom"
+							],
+							"variable": [
+								{
+									"key": "idRoom",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -487,6 +765,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzODJhNjNkMzUzYTZmMzE4Y2UiLCJpYXQiOjE3NDc5ODUxNzcsImV4cCI6MTc0Nzk4ODc3N30.XpxTezwUmW7fKMS-pNfNPztijx-Bc5AZCZKq6YcezeY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -505,7 +793,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/",
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/listRooms",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -515,84 +803,7 @@
 								"GestionHoteles",
 								"v1",
 								"rooms",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Desocupar room",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzQ1ODAsImV4cCI6MTc0NjEzODE4MH0.2DOBnlT5rcpfPLXqZIJwUTR4yWbAwvJhOAs_PyPFOMI",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/free/6813d9e0fc37b846ec236b9d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"GestionHoteles",
-								"v1",
-								"rooms",
-								"free",
-								"6813d9e0fc37b846ec236b9d"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Asignar room",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEzZDgyMGQwYjFhYWRmNTM4NTZlZWIiLCJpYXQiOjE3NDYxMzQ1ODAsImV4cCI6MTc0NjEzODE4MH0.2DOBnlT5rcpfPLXqZIJwUTR4yWbAwvJhOAs_PyPFOMI",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"hotel\": \"6813d8dfd0b1aadf53856eef\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/assign/6813d9e0fc37b846ec236b9d/6813e5c44f752f7e4246af93",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"GestionHoteles",
-								"v1",
-								"rooms",
-								"assign",
-								"6813d9e0fc37b846ec236b9d",
-								"6813e5c44f752f7e4246af93"
+								"listRooms"
 							]
 						}
 					},
@@ -604,6 +815,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzODJhNjNkMzUzYTZmMzE4Y2UiLCJpYXQiOjE3NDc5ODUxNzcsImV4cCI6MTc0Nzk4ODc3N30.XpxTezwUmW7fKMS-pNfNPztijx-Bc5AZCZKq6YcezeY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -622,7 +843,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/6813d9e0fc37b846ec236b9d",
+							"raw": "http://localhost:3000/GestionHoteles/v1/rooms/findByRoom/682ec040abebb3223af44693",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -632,7 +853,492 @@
 								"GestionHoteles",
 								"v1",
 								"rooms",
-								"6813d9e0fc37b846ec236b9d"
+								"findByRoom",
+								"682ec040abebb3223af44693"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation Room",
+			"item": [
+				{
+					"name": "Create Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5NzkzNzEsImV4cCI6MTc0Nzk4Mjk3MX0.n2oyv3z9OkaNeT0oIAoUtJWK8fKFpUIy5Qi2fAI8bRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"checkInDate\": \"2025-06-22\",\r\n  \"checkOutDate\": \"2025-06-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationRoom/createReservation/:idRoom",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationRoom",
+								"createReservation",
+								":idRoom"
+							],
+							"variable": [
+								{
+									"key": "idRoom",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5NzkzNzEsImV4cCI6MTc0Nzk4Mjk3MX0.n2oyv3z9OkaNeT0oIAoUtJWK8fKFpUIy5Qi2fAI8bRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationRoom/findReservation/:idReservationRoom",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationRoom",
+								"findReservation",
+								":idReservationRoom"
+							],
+							"variable": [
+								{
+									"key": "idReservationRoom",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate PDF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5ODM3NDgsImV4cCI6MTc0Nzk4NzM0OH0.NBRHWyvqCYqXrk8ycMv0C82FIFE2V-jdkz6SROUGzhY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationRoom/generatePDF/:idReservationRoom",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationRoom",
+								"generatePDF",
+								":idReservationRoom"
+							],
+							"variable": [
+								{
+									"key": "idReservationRoom",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5NzkzNzEsImV4cCI6MTc0Nzk4Mjk3MX0.n2oyv3z9OkaNeT0oIAoUtJWK8fKFpUIy5Qi2fAI8bRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationRoom/cancelReservation/:idReservationRoom",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationRoom",
+								"cancelReservation",
+								":idReservationRoom"
+							],
+							"variable": [
+								{
+									"key": "idReservationRoom",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Crear Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5NzkzNzEsImV4cCI6MTc0Nzk4Mjk3MX0.n2oyv3z9OkaNeT0oIAoUtJWK8fKFpUIy5Qi2fAI8bRM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fiesta de Aniversario\",\r\n    \"hotel\": \"idHotel\",\r\n    \"date\": \"2025-04-29\",\r\n    \"type\": \"PARTY\",\r\n    \"resources\": [\r\n        \"Servicio de Meseros\",\r\n        \"Servicio de Bartender\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/event/createEvent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"event",
+								"createEvent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzODJhNjNkMzUzYTZmMzE4Y2UiLCJpYXQiOjE3NDgwNjczODksImV4cCI6MTc0ODA3MDk4OX0.xHqX1QuqyKQnNjzpvP0VM5lbwrgXhSzkjQ3eINgRQYA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/event/listEvents",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"event",
+								"listEvents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzODJhNjNkMzUzYTZmMzE4Y2UiLCJpYXQiOjE3NDgwNjczODksImV4cCI6MTc0ODA3MDk4OX0.xHqX1QuqyKQnNjzpvP0VM5lbwrgXhSzkjQ3eINgRQYA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/event/findEventById/6830191a579aa0c7d926c296",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"event",
+								"findEventById",
+								"6830191a579aa0c7d926c296"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation Event",
+			"item": [
+				{
+					"name": "Create Reservation Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5ODM3NDgsImV4cCI6MTc0Nzk4NzM0OH0.NBRHWyvqCYqXrk8ycMv0C82FIFE2V-jdkz6SROUGzhY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"checkInDate\": \"2025-06-22\",\r\n  \"checkOutDate\": \"2025-06-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationEvent/createReservation/:idEvent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationEvent",
+								"createReservation",
+								":idEvent"
+							],
+							"variable": [
+								{
+									"key": "idEvent",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id Reservation Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5ODM3NDgsImV4cCI6MTc0Nzk4NzM0OH0.NBRHWyvqCYqXrk8ycMv0C82FIFE2V-jdkz6SROUGzhY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationEvent/findReservation/:idReservationEvent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationEvent",
+								"findReservation",
+								":idReservationEvent"
+							],
+							"variable": [
+								{
+									"key": "idReservationEvent",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate PDF Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5ODM3NDgsImV4cCI6MTc0Nzk4NzM0OH0.NBRHWyvqCYqXrk8ycMv0C82FIFE2V-jdkz6SROUGzhY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationEvent/generatePDF/:idReservationEvent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationEvent",
+								"generatePDF",
+								":idReservationEvent"
+							],
+							"variable": [
+								{
+									"key": "idReservationEvent",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Reservation Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODJlYmUzZDJhNjNkMzUzYTZmMzE4ZDAiLCJpYXQiOjE3NDc5ODM3NDgsImV4cCI6MTc0Nzk4NzM0OH0.NBRHWyvqCYqXrk8ycMv0C82FIFE2V-jdkz6SROUGzhY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/GestionHoteles/v1/reservationEvent/cancelReservation/:idReservationEvent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"GestionHoteles",
+								"v1",
+								"reservationEvent",
+								"cancelReservation",
+								":idReservationEvent"
+							],
+							"variable": [
+								{
+									"key": "idReservationEvent",
+									"value": ""
+								}
 							]
 						}
 					},

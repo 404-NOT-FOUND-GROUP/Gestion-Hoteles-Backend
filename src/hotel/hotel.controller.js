@@ -17,13 +17,13 @@ export const createHotel = async (req, res) => {
 
         res.status(201).json({
             success: true,
-            msg: "Hotel creado",
+            msg: "Hotel created successfully",
             hotel
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error creando hotel",
+            msg: "Error creating hotel",
             error: error.message
         });
     }
@@ -35,13 +35,13 @@ export const getHotels = async (req, res) => {
         const hotels = await Hotel.find();
         res.status(200).json({
             success: true,
-            msg: "Listado de Hoteles:",
+            msg: "List of Hotels:",
             hotels
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error recibiendo hoteles",
+            msg: "Error receiving hotels",
             error: error.message
         });
     }
@@ -64,7 +64,7 @@ export const getHotelById = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error recibiendo hotel",
+            msg: "Error receiving hotel",
             error: error.message
         });
     }
@@ -74,6 +74,11 @@ export const updateHotel = async (req, res) => {
     try {
         const { hid } = req.params;
         const data = req.body;
+
+        if (req.file) {
+            const imageUrl = `/uploads/${req.file.filename}`;
+            data.image = imageUrl;
+        }
 
         const updatedHotel = await Hotel.findByIdAndUpdate(hid, data, { new: true });
 
@@ -86,13 +91,13 @@ export const updateHotel = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            msg: "Hotel Actualizado",
+            msg: "Updated Hotel",
             hotel: updatedHotel
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error actualizando hotel",
+            msg: "Error updating hotel",
             error: error.message
         });
     }
@@ -113,13 +118,30 @@ export const deleteHotel = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            msg: "Hotel Eliminado",
+            msg: "Hotel Deleted",
             hotel: deletedHotel
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            msg: "Error eliminando hotel",
+            msg: "Error deleting hotel",
+            error: error.message
+        });
+    }
+};
+
+export const getReservations = async (req, res) => {
+    try {
+        const hotels = await Hotel.find().sort({ reservation: -1 });
+        res.status(200).json({
+            success: true,
+            msg: "List of hotels with the most reservations:",
+            hotels
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error receiving hotels",
             error: error.message
         });
     }

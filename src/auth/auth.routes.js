@@ -7,7 +7,7 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.get("/findByEmail", findByEmail);
+router.post("/findByEmail", findByEmail);
 
 router.put("/updatePasswordById/:uid", updatePasswordById);
 

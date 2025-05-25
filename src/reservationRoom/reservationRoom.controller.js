@@ -1,5 +1,6 @@
 import ReservationRoom from './reservationRoom.model.js';
 import Room from '../rooms/rooms.model.js';
+import Hotel from '../hotel/hotel.model.js';
 import PDFDocument from 'pdfkit';
 
 export const createReservation = async (req, res) => {
@@ -59,6 +60,11 @@ export const createReservation = async (req, res) => {
         room.status = "OCCUPIED";
         room.user = user._id;
         await room.save();
+
+        await Hotel.findByIdAndUpdate(
+            room.hotel._id,
+            { $inc: { reservation: 1 } }
+        );
 
         res.status(201).json({
             success: true,

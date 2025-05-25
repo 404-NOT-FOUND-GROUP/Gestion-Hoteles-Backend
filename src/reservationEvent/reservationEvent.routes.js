@@ -4,12 +4,12 @@ import { createReservationEventValidate, findByIdReservationEventValidate, gener
 
 const router = Router();
 
-router.post("/createReservation/:eid", createReservationEventValidate, createReservationEvent);
+router.post("/createReservationEvent/:eid", createReservationEventValidate, createReservationEvent);
 
-router.get("/findReservation/:_id", findByIdReservationEventValidate, findReservationEventById);
+router.get("/findReservationEvent/:_id", findByIdReservationEventValidate, findReservationEventById);
 
-router.get("/generatePDF/:_id", generatePDFReservationEventValidate, generatePDFEventById);
+router.get("/generatePDFEvent/:_id", generatePDFReservationEventValidate, generatePDFEventById);
 
-router.delete("/cancelReservation/:_id", cancelReservationEventValidate, cancelReservationEvent);
+router.delete("/cancelReservationEvent/:_id", cancelReservationEventValidate, cancelReservationEvent);
 
 export default router;

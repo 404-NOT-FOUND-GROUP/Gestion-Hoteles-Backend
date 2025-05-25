@@ -128,75 +128,106 @@ export const findReservationEventById = async (req, res) => {
 
 // Generar PDF de reservación
 export const generatePDFEventById = async (req, res) => {
-    try {
-        const { _id } = req.params;
-        const reservation = await ReservationEvent.findById(_id)
-            .populate({
-                path: 'event',
-                populate: { path: 'hotel', select: 'name' }
-            })
-            .populate('user', 'name surname email phone');
+     try {
+    const { _id } = req.params;
 
-        if (!reservation || reservation.status === false) {
-            return res.status(404).json({
-                success: false,
-                msg: "Reservation not found or has been cancelled"
-            });
-        }
-
-        const doc = new PDFDocument();
-        let filename = `Factura_Evento_${reservation._id}.pdf`;
-        filename = encodeURIComponent(filename);
-
-        res.setHeader('Content-Disposition', 'attachment; filename="' + filename + '"');
-        res.setHeader('Content-Type', 'application/pdf');
-
-        doc.on('error', (err) => {
-            if (!res.headersSent) {
-                res.status(500).json({
-                    success: false,
-                    msg: "Error generating PDF",
-                    error: err.message
-                });
-            }
-        });
-
-        doc.pipe(res);
-
-        doc.fontSize(20).text('Factura de Reservación de Evento:', { align: 'center' });
-        doc.moveDown();
-
-        doc.fontSize(16).text(`Reservación ID: ${reservation._id}`);
-        doc.moveDown();
-        doc.text(`Fecha de creación: ${reservation.createdAt.toLocaleString()}`);
-        doc.moveDown();
-        doc.text(`Evento: ${reservation.event.name}`);
-        doc.text(`Hotel: ${reservation.event.hotel.name}`);
-        doc.text(`Tipo: ${reservation.event.type}`);
-        doc.moveDown();
-        doc.text(`Fecha del evento: ${reservation.event.date.toLocaleString()}`);
-        doc.text(`Servicios: ${reservation.event.resources.join(', ')}`);
-        doc.moveDown();
-        doc.text(`Usuario: ${reservation.user.name} ${reservation.user.surname}`);
-        doc.text(`Email: ${reservation.user.email}`);
-        doc.text(`Teléfono: ${reservation.user.phone}`);
-        doc.moveDown();
-        doc.moveDown();
-        doc.text(`Precio total: Q${reservation.event.resourcesPrice}`, { align: 'center' });
-        doc.moveDown();
-        doc.text('¡Gracias por reservar su evento!', { align: 'center' });
-        doc.text('Esperamos que disfrute su experiencia con nosotros.', { align: 'center' });
-
-        doc.end();
-    } catch (error) {
-        if (!res.headersSent) {
-            res.status(500).json({
-                success: false,
-                msg: "Error generating event reservation PDF",
-                error: error.message
-            });
-        }
+    if (!_id) {
+      return res.status(400).json({
+        success: false,
+        msg: "ID de reservación no proporcionado",
+      });
     }
+
+    // Buscar la reservación con los datos necesarios
+    const reservation = await ReservationEvent.findById(_id)
+      .populate({
+        path: 'event',
+        populate: { path: 'hotel', select: 'name' }
+      })
+      .populate('user', 'name surname email phone');
+
+    // Validación de existencia y estado de la reservación
+    if (!reservation || reservation.status === false) {
+      return res.status(404).json({
+        success: false,
+        msg: "Reservación no encontrada o ha sido cancelada",
+      });
+    }
+
+    // Validar datos esenciales para evitar errores
+    if (!reservation.event || !reservation.event.hotel || !reservation.user) {
+      return res.status(400).json({
+        success: false,
+        msg: "Faltan datos requeridos para generar la factura",
+      });
+    }
+
+    const doc = new PDFDocument();
+
+    const filename = encodeURIComponent(`Factura_Evento_${reservation._id}.pdf`);
+
+    // Configurar headers de respuesta para PDF
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.setHeader('Content-Type', 'application/pdf');
+
+    doc.on('error', (err) => {
+      console.error("❌ Error en PDFDocument:", err);
+      if (!res.headersSent) {
+        res.status(500).json({
+          success: false,
+          msg: "Error interno al generar el PDF",
+          error: err.message,
+        });
+      }
+    });
+
+    // Enviar el PDF como respuesta
+    doc.pipe(res);
+
+    // Contenido del PDF
+    doc.fontSize(20).text('Factura de Reservación de Evento', { align: 'center' });
+    doc.moveDown();
+
+    doc.fontSize(14).text(`ID de Reservación: ${reservation._id}`);
+    doc.text(`Fecha de creación: ${reservation.createdAt.toLocaleString()}`);
+    doc.moveDown();
+
+    doc.fontSize(14).text(`Evento: ${reservation.event.name}`);
+    doc.text(`Hotel: ${reservation.event.hotel.name}`);
+    doc.text(`Tipo de Evento: ${reservation.event.type}`);
+    doc.text(`Fecha del Evento: ${reservation.event.date?.toLocaleString() || "No especificado"}`);
+    doc.moveDown();
+
+    const recursos = reservation.event.resources?.length
+      ? reservation.event.resources.join(', ')
+      : "Ninguno";
+
+    doc.text(`Servicios: ${recursos}`);
+    doc.moveDown();
+
+    doc.text(`Usuario: ${reservation.user.name} ${reservation.user.surname}`);
+    doc.text(`Correo: ${reservation.user.email}`);
+    doc.text(`Teléfono: ${reservation.user.phone}`);
+    doc.moveDown();
+
+    doc.fontSize(16).text(`Precio Total: Q${reservation.event.resourcesPrice || 0}`, { align: 'center' });
+    doc.moveDown();
+
+    doc.fontSize(12).text('¡Gracias por reservar con nosotros!', { align: 'center' });
+    doc.text('Esperamos que disfrute su experiencia.', { align: 'center' });
+
+    doc.end();
+
+  } catch (error) {
+    console.error("🔥 Error general:", error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        success: false,
+        msg: "Error al generar la factura del evento",
+        error: error.message,
+      });
+    }
+  }
 };
 
 export const cancelReservationEvent = async (req, res) => {

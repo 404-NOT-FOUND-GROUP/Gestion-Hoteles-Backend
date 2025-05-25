@@ -26,7 +26,6 @@ export const getHotelByIdValidator = [
 ];
 
 export const getHotelsValidator = [
-    validateJWT,
     validarCampos,
     handleErrors
 ];

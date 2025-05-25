@@ -11,7 +11,7 @@ router.get("/getHotels", getHotelsValidator, getHotels);
 
 router.get("/getHotelById/:hid", getHotelByIdValidator, getHotelById);
 
-router.put("/updateHotel/:hid", updateHotelValidator, updateHotel);
+router.put("/updateHotel/:hid", uploadProfilePicture.single('image'), updateHotelValidator, updateHotel);
 
 router.delete("/deleteHotel/:hid", deleteHotelValidator, deleteHotel);
 

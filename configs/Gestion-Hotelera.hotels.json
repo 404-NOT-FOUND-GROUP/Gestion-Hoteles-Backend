@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "name": "404",
+  "address": "32-2, avenida 23, Zona 17",
+  "phone": "11112222",
+  "description": "Es el hotel más elegante de la zona",
+  "status": true,
+  "image": null,
+  "reservation": 5,
+  "createdAt": {
+    "$date": "2025-05-22T06:10:12.893Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:06.318Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683645db3b4ff1292867c5a2"
+  },
+  "name": "403",
+  "address": "32-2, avenida 23, Zona 12",
+  "phone": "11112222",
+  "description": "Es el hotel más elegante de la zona",
+  "status": true,
+  "image": null,
+  "reservation": 0,
+  "createdAt": {
+    "$date": "2025-05-27T23:08:11.866Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:08:11.866Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683645e53b4ff1292867c5a5"
+  },
+  "name": "402",
+  "address": "32-2, avenida 23, Zona 10",
+  "phone": "11112222",
+  "description": "Es el hotel más elegante de la zona",
+  "status": true,
+  "image": null,
+  "reservation": 0,
+  "createdAt": {
+    "$date": "2025-05-27T23:08:21.355Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:08:21.355Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "name": "400",
+  "address": "32-2, avenida 23, Zona 6",
+  "phone": "11112222",
+  "description": "Es el hotel más elegante de la zona",
+  "status": true,
+  "image": null,
+  "reservation": 2,
+  "createdAt": {
+    "$date": "2025-05-27T23:08:30.205Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:20.849Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683645fd3b4ff1292867c5ab"
+  },
+  "name": "Palace",
+  "address": "32-2, avenida 23, Zona 1",
+  "phone": "11112222",
+  "description": "Es el hotel más elegante de la zona",
+  "status": true,
+  "image": null,
+  "reservation": 0,
+  "createdAt": {
+    "$date": "2025-05-27T23:08:45.002Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:08:45.002Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683646073b4ff1292867c5ae"
+  },
+  "name": "Reforme",
+  "address": "32-2, avenida 23, Zona 3",
+  "phone": "11112222",
+  "description": "Es el hotel más elegante de la zona",
+  "status": true,
+  "image": null,
+  "reservation": 0,
+  "createdAt": {
+    "$date": "2025-05-27T23:08:55.461Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:08:55.461Z"
+  }
+}]

@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "6830191a579aa0c7d926c296"
+  },
+  "name": "Fiesta de Aniversario",
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "type": "PARTY",
+  "resources": [
+    "Servicio de Meseros",
+    "Servicio de Bartender"
+  ],
+  "resourcesPrice": 220,
+  "status": "PROGRAMADO",
+  "createdAt": {
+    "$date": "2025-05-23T06:43:38.535Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-23T06:43:38.535Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683615c7226a27cd3c3c64ad"
+  },
+  "name": "Fiesta de Aniversario",
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "type": "PARTY",
+  "resources": [
+    "Servicio de Meseros",
+    "Servicio de Bartender"
+  ],
+  "resourcesPrice": 220,
+  "status": "PROGRAMADO",
+  "createdAt": {
+    "$date": "2025-05-27T19:43:03.084Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T19:43:03.084Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68361846226a27cd3c3c64ba"
+  },
+  "name": "Matrimonio",
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "date": {
+    "$date": "2025-05-28T00:00:00.000Z"
+  },
+  "type": "PARTY",
+  "resources": [
+    "Servicio de Decoracion",
+    "Servicio de Meseros",
+    "Servicio de Bartender"
+  ],
+  "resourcesPrice": 310,
+  "status": "PROGRAMADO",
+  "createdAt": {
+    "$date": "2025-05-27T19:53:42.052Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T19:53:42.052Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6836472a7edfa80d4ac79369"
+  },
+  "name": "Fiesta de Aniversario",
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "type": "PARTY",
+  "resources": [
+    "Servicio de Meseros",
+    "Servicio de Bartender"
+  ],
+  "resourcesPrice": 220,
+  "status": "PROGRAMADO",
+  "createdAt": {
+    "$date": "2025-05-27T23:13:46.939Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:46.939Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683647357edfa80d4ac7936c"
+  },
+  "name": "Fiesta de Matrimonio",
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "type": "PARTY",
+  "resources": [
+    "Servicio de Meseros",
+    "Servicio de Bartender"
+  ],
+  "resourcesPrice": 220,
+  "status": "PROGRAMADO",
+  "createdAt": {
+    "$date": "2025-05-27T23:13:57.834Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:57.834Z"
+  }
+}]

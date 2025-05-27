@@ -12,6 +12,8 @@ import roomsRoutes from "../src/rooms/rooms.routes.js"
 import eventRoutes from "../src/events/event.routes.js"
 import reservationRoomRoutes from "../src/reservationRoom/reservationRoom.routes.js"
 import reservationEventRoutes from "../src/reservationEvent/reservationEvent.routes.js"
+import path from "path";
+import { fileURLToPath } from "url";
 
 import { dbConnection } from "./mongo.js"
 
@@ -30,10 +32,11 @@ const middlewares = (app) => {
                 defaultSrc: ["'self'"],
                 scriptSrc: ["'self'", "'unsafe-inline'", `http://localhost:${process.env.PORT}`],
                 connectSrc: ["'self'", `http://localhost:${process.env.PORT}`],
-                imgSrc: ["'self'", "data:"],
+                imgSrc: ["'self'", "data:", "http://localhost:5173", "http://localhost:3000"],
                 styleSrc: ["'self'", "'unsafe-inline'"],
             },
         },
+        crossOriginResourcePolicy: false 
     }));
         app.use(morgan("dev"))
     }
@@ -61,6 +64,9 @@ export const initServer = () => {
     const app = express()
     try{
         middlewares(app)
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = path.dirname(__filename);
+         app.use("/uploads", cors({ origin: "*" }), express.static(path.join(__dirname, "../public/uploads")));
         conectarDB()
         AddUserAdmin()
         routes(app)

@@ -76,8 +76,7 @@ export const updateHotel = async (req, res) => {
         const data = req.body;
 
         if (req.file) {
-            const imageUrl = `/uploads/${req.file.filename}`;
-            data.image = imageUrl;
+            data.image = req.file.filename;
         }
 
         const updatedHotel = await Hotel.findByIdAndUpdate(hid, data, { new: true });
@@ -95,6 +94,7 @@ export const updateHotel = async (req, res) => {
             hotel: updatedHotel
         });
     } catch (error) {
+        console.error(error);
         res.status(500).json({
             success: false,
             msg: "Error updating hotel",

@@ -8,7 +8,6 @@ import {
 } from "./rooms.controller.js";
 
 import { createRoomValidator, 
-        getRoomsValidator, 
         findyByRoomValidator, 
         updateRoomValidator, 
         deleteRoomValidator } from "../middlewares/validate-room.js";
@@ -19,7 +18,7 @@ const router = Router();
 
 router.post("/addRoom", validateHotel, createRoomValidator, createRoom);
 
-router.get("/listRooms", getRoomsValidator, getRooms);
+router.get("/listRooms", getRooms);
 
 router.get("/findByRoom/:rid", findyByRoomValidator, getRoomById);
 

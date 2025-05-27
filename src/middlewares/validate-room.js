@@ -6,10 +6,6 @@ export const createRoomValidator = [
     hasRoles("ADMIN_ROLE")
 ];
 
-export const getRoomsValidator = [
-    validateJWT
-];
-
 export const findyByRoomValidator = [
     validateJWT
 ];

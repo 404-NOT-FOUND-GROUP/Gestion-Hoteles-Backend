@@ -14,8 +14,7 @@ export const deleteEventValidator = [
 ];
 
 export const listEventsValidator = [
-    validateJWT,
-    hasRoles("ADMIN_ROLE")
+    validateJWT
 ];
 
 export const findEventByIdValidator = [

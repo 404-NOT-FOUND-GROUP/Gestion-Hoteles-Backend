@@ -1,0 +1,192 @@
+[{
+  "_id": {
+    "$oid": "68300e159807f14a0db6f0d4"
+  },
+  "room": {
+    "$oid": "682ec040abebb3223af44693"
+  },
+  "user": {
+    "$oid": "682ebe3d2a63d353a6f318d0"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-23T05:56:37.086Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T22:49:31.589Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68362d66b89754be5f94f830"
+  },
+  "room": {
+    "$oid": "682ec040abebb3223af44693"
+  },
+  "user": {
+    "$oid": "682ebe3d2a63d353a6f318d0"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T21:23:50.681Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T22:48:26.930Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683646eb7edfa80d4ac79341"
+  },
+  "room": {
+    "$oid": "682ec040abebb3223af44693"
+  },
+  "user": {
+    "$oid": "682ebe382a63d353a6f318ce"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T23:12:43.529Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:12:43.529Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683646f57edfa80d4ac79348"
+  },
+  "room": {
+    "$oid": "6836462c3b4ff1292867c5b3"
+  },
+  "user": {
+    "$oid": "682ebe382a63d353a6f318ce"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T23:12:53.256Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:12:53.256Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683646fc7edfa80d4ac7934f"
+  },
+  "room": {
+    "$oid": "683646316ce6a5b226161233"
+  },
+  "user": {
+    "$oid": "682ebe382a63d353a6f318ce"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T23:13:00.004Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:00.004Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683647027edfa80d4ac79356"
+  },
+  "room": {
+    "$oid": "6836463d6ce6a5b226161245"
+  },
+  "user": {
+    "$oid": "682ebe382a63d353a6f318ce"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T23:13:06.314Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:06.314Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683647087edfa80d4ac7935d"
+  },
+  "room": {
+    "$oid": "683646916ce6a5b226161258"
+  },
+  "user": {
+    "$oid": "682ebe382a63d353a6f318ce"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T23:13:12.974Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:12.974Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "683647107edfa80d4ac79364"
+  },
+  "room": {
+    "$oid": "683646986ce6a5b226161264"
+  },
+  "user": {
+    "$oid": "682ebe382a63d353a6f318ce"
+  },
+  "checkInDate": {
+    "$date": "2025-06-22T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2025-06-23T00:00:00.000Z"
+  },
+  "status": true,
+  "createdAt": {
+    "$date": "2025-05-27T23:13:20.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:20.845Z"
+  }
+}]

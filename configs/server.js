@@ -1,0 +1,78 @@
+"use strict"
+
+import express from "express"
+import cors from "cors"
+import helmet from "helmet"
+import morgan from "morgan"
+import AddUserAdmin from "../src/auth/auth.controller.js"
+import authRoutes from "../src/auth/auth.routes.js"
+import userRoutes from "../src/user/user.routes.js"
+import hotelRoutes from "../src/hotel/hotel.routes.js"
+import roomsRoutes from "../src/rooms/rooms.routes.js"
+import eventRoutes from "../src/events/event.routes.js"
+import reservationRoomRoutes from "../src/reservationRoom/reservationRoom.routes.js"
+import reservationEventRoutes from "../src/reservationEvent/reservationEvent.routes.js"
+import path from "path";
+import { fileURLToPath } from "url";
+
+import { dbConnection } from "./mongo.js"
+
+
+const middlewares = (app) => {
+    app.use(express.urlencoded({extended: false}))
+    app.use(express.json())
+    app.use(cors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    }));
+    app.use(helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: ["'self'", "'unsafe-inline'", `http://localhost:${process.env.PORT}`],
+                connectSrc: ["'self'", `http://localhost:${process.env.PORT}`],
+                imgSrc: ["'self'", "data:", "http://localhost:5173", "http://localhost:3000"],
+                styleSrc: ["'self'", "'unsafe-inline'"],
+            },
+        },
+        crossOriginResourcePolicy: false 
+    }));
+        app.use(morgan("dev"))
+    }
+
+const routes = (app) =>{
+    app.use("/GestionHoteles/v1/auth", authRoutes)
+    app.use("/GestionHoteles/v1/user", userRoutes)
+    app.use("/GestionHoteles/v1/hotel", hotelRoutes)
+    app.use("/GestionHoteles/v1/rooms", roomsRoutes)
+    app.use("/GestionHoteles/v1/event", eventRoutes)	
+    app.use("/GestionHoteles/v1/reservationRoom", reservationRoomRoutes)
+    app.use("/GestionHoteles/v1/reservationEvent", reservationEventRoutes)
+}
+
+const conectarDB = async () =>{
+    try{
+        await dbConnection()
+    }catch(err){
+        console.log(`Database connection failed: ${err}`)
+        process.exit(1)
+    }
+}
+
+export const initServer = () => {
+    const app = express()
+    try{
+        middlewares(app)
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = path.dirname(__filename);
+         app.use("/uploads", cors({ origin: "*" }), express.static(path.join(__dirname, "../public/uploads")));
+        conectarDB()
+        AddUserAdmin()
+        routes(app)
+        app.listen(process.env.PORT)
+        console.log(`Server running on port ${process.env.PORT}`)
+    }catch(err){
+        console.log(`Server init failed: ${err}`)
+    }
+}

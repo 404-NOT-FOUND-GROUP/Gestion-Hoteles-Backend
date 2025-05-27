@@ -1,0 +1,304 @@
+[{
+  "_id": {
+    "$oid": "682ec040abebb3223af44693"
+  },
+  "number": 303,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "OCCUPIED",
+  "createdAt": {
+    "$date": "2025-05-22T06:12:16.194Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:12:43.535Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "6836462c3b4ff1292867c5b3"
+  },
+  "number": 212,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "OCCUPIED",
+  "createdAt": {
+    "$date": "2025-05-27T23:09:32.705Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:12:53.261Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646316ce6a5b226161233"
+  },
+  "number": 222,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "OCCUPIED",
+  "createdAt": {
+    "$date": "2025-05-27T23:09:37.406Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:00.007Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646356ce6a5b226161239"
+  },
+  "number": 232,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:09:41.030Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:09:41.030Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646396ce6a5b22616123f"
+  },
+  "number": 265,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:09:45.656Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:09:45.656Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "6836463d6ce6a5b226161245"
+  },
+  "number": 111,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "OCCUPIED",
+  "createdAt": {
+    "$date": "2025-05-27T23:09:49.566Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:06.316Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646426ce6a5b22616124b"
+  },
+  "number": 100,
+  "hotel": {
+    "$oid": "682ebfc4abebb3223af4468c"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:09:54.793Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:09:54.793Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "6836468e6ce6a5b226161252"
+  },
+  "number": 300,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:10.570Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:10.570Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646916ce6a5b226161258"
+  },
+  "number": 500,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "OCCUPIED",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:13.911Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:12.976Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646956ce6a5b22616125e"
+  },
+  "number": 111,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:17.306Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:17.306Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646986ce6a5b226161264"
+  },
+  "number": 122,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "OCCUPIED",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:20.346Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:13:20.847Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "6836469b6ce6a5b22616126a"
+  },
+  "number": 322,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:23.835Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:23.835Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646a06ce6a5b226161270"
+  },
+  "number": 533,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:28.978Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:28.978Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646a46ce6a5b226161276"
+  },
+  "number": 111,
+  "hotel": {
+    "$oid": "683645ee3b4ff1292867c5a8"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:32.979Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:32.979Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646af6ce6a5b22616127c"
+  },
+  "number": 111,
+  "hotel": {
+    "$oid": "683646073b4ff1292867c5ae"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:43.790Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:43.790Z"
+  },
+  "price": 500
+},
+{
+  "_id": {
+    "$oid": "683646b36ce6a5b226161282"
+  },
+  "number": 151,
+  "hotel": {
+    "$oid": "683646073b4ff1292867c5ae"
+  },
+  "type": "PRESIDENTIAL",
+  "image": null,
+  "status": "AVAILABLE",
+  "createdAt": {
+    "$date": "2025-05-27T23:11:47.646Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T23:11:47.646Z"
+  },
+  "price": 500
+}]

@@ -12,7 +12,6 @@ export const findReservationByIdValidate = [
 
 export const generatePDFByIdValidate = [
     validateJWT,
-    validateReservationOwner
 ];
 
 export const cancelReservationValidate = [

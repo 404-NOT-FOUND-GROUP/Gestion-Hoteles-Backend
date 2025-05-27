@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createReservation, findReservationById, generatePDFById, cancelReservation } from "./reservationRoom.controller.js";
-import { createReservationValidate, findReservationByIdValidate, generatePDFByIdValidate, cancelReservationValidate } from "../middlewares/validate-reservationRoom.js";
+import { createReservation, findReservationById, generatePDFById, cancelReservation, getListReservationsRoomByUser } from "./reservationRoom.controller.js";
+import { createReservationValidate, findReservationByIdValidate, generatePDFByIdValidate, cancelReservationValidate, getListReservationsEventByUserValidate } from "../middlewares/validate-reservationRoom.js";
 
 const router = Router();
 
@@ -11,5 +11,7 @@ router.get("/findReservationRoom/:_id", findReservationByIdValidate, findReserva
 router.get("/generatePDFRoom/:_id", generatePDFByIdValidate, generatePDFById);
 
 router.delete("/cancelReservationRoom/:_id", cancelReservationValidate, cancelReservation )
+
+router.get("/getListReservationsRoomByUser", getListReservationsEventByUserValidate, getListReservationsRoomByUser);
 
 export default router;

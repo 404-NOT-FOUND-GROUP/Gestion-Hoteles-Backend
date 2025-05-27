@@ -226,3 +226,48 @@ export const cancelReservationEvent = async (req, res) => {
         });
     }
 };
+
+export const getListReservationsEventByUser = async (req, res) => {
+    try {
+        const userId = req.usuario._id;
+
+        const reservations = await ReservationEvent.find({ user: userId, status: { $ne: false } })
+            .populate({
+                path: 'event',
+                populate: { path: 'hotel', select: 'name' }
+            });
+
+        if (!reservations || reservations.length === 0) {
+            return res.status(404).json({
+                success: false,
+                msg: "No se encontraron reservaciones para este usuario"
+            });
+        }
+
+        const result = reservations.map(reservation => ({
+            _id: reservation._id,
+            event: {
+                name: reservation.event.name,
+                hotel: reservation.event.hotel.name,
+                type: reservation.event.type,
+                date: reservation.event.date,
+                resources: reservation.event.resources,
+                resourcesPrice: reservation.event.resourcesPrice
+            },
+            checkInDate: reservation.checkInDate,
+            checkOutDate: reservation.checkOutDate,
+            createdAt: reservation.createdAt
+        }));
+
+        res.status(200).json({
+            success: true,
+            reservations: result
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error al obtener las reservaciones del usuario",
+            error: error.message
+        });
+    }
+};

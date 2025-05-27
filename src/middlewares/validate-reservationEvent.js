@@ -19,3 +19,7 @@ export const cancelReservationEventValidate = [
     validateJWT,
     validateReservationEventOwner
 ];
+
+export const getListReservationsEventByUserValidate = [
+    validateJWT
+];

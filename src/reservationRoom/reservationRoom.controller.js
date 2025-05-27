@@ -228,3 +228,46 @@ export const cancelReservation = async (req, res) => {
         });
     }
 }
+
+export const getListReservationsRoomByUser = async (req, res) => {
+    try {
+        const userId = req.usuario._id;
+
+        const reservations = await ReservationRoom.find({ user: userId, status: { $ne: false } })
+            .populate({
+                path: 'room',
+                populate: { path: 'hotel', select: 'name' }
+            });
+
+        if (!reservations || reservations.length === 0) {
+            return res.status(404).json({
+                success: false,
+                msg: "No se encontraron reservaciones para este usuario"
+            });
+        }
+
+        const result = reservations.map(reservation => ({
+            _id: reservation._id,
+            room: {
+                number: reservation.room.number,
+                hotel: reservation.room.hotel.name,
+                type: reservation.room.type,
+                price: reservation.room.price
+            },
+            checkInDate: reservation.checkInDate,
+            checkOutDate: reservation.checkOutDate,
+            createdAt: reservation.createdAt
+        }));
+
+        res.status(200).json({
+            success: true,
+            reservations: result
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: "Error al obtener las reservaciones del usuario",
+            error: error.message
+        });
+    }
+}
